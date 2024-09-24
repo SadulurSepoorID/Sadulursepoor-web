@@ -58,27 +58,30 @@
         <p class="error-message" id="error-message"></p>
     </div>
 
-    <script>
-        // Tentukan username dan password yang valid
-        const validUsername = "ssjakarta";
-        const validPassword = "sadulursepoorjkt";
+<script>
+    // Tentukan username dan password yang valid dalam bentuk array
+    const validAccounts = [
+        { username: "SadulursepoorID", password: "ssid", name: "anggota" }
+    ];
 
-        function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('error-message');
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('error-message');
 
-            // Periksa apakah username dan password sesuai
-            if (username === validUsername && password === validPassword) {
-                alert("Login Successful");
-                errorMessage.textContent = "";  // Kosongkan pesan error
-                // Arahkan ke halaman lain setelah login berhasil (contoh)
-                window.location.href = "search.html"; // Ganti dengan halaman yang diinginkan
-            } else {
-                errorMessage.textContent = "Invalid username or password.";
-            }
+        // Periksa apakah username dan password cocok dengan salah satu akun
+        const account = validAccounts.find(account => account.username === username && account.password === password);
+
+        if (account) {
+            alert("Login Sukses, Selamat datang para " + account.name);
+            errorMessage.textContent = "";  // Kosongkan pesan error
+            // Arahkan ke halaman lain setelah login berhasil (contoh)
+            window.location.href = "weblogin.html"; // Ganti dengan halaman yang diinginkan
+        } else {
+            errorMessage.textContent = "Username atau Password Salah.";
         }
-    </script>
+    }
+</script>
 
 </body>
 </html>
